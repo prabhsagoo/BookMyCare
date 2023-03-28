@@ -1,12 +1,11 @@
 import express, { request, response } from "express";
-import { addData, getLogin } from "./data.js";
 import { user } from "./MongoDB.js";
 export const routerGetData = express.Router();
 
 
 //Displaying all data
 routerGetData.get("/", async (request, response) => {
-  response.send(await user.find());
+  response.send(await user.find({},"-_id -__v"));
 });
 
 //Registration
