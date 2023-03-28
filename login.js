@@ -15,9 +15,9 @@ router.post("/", async (request, response) => {
     response.send("Account doesn't exist");
   } else {
     if ((existingUser[0].email === email) & (existingUser[0].pwd === pwd)) {
-      response.send("Login successful");
+      response.send("Login successful!!!");
     } else {
-      response.send("Wrong email password combination");
+      response.send("Wrong email password combination.");
     }
   }
 });
