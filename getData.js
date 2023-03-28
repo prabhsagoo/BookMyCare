@@ -11,7 +11,7 @@ routerGetData.get("/", async (request, response) => {
 //Registration
 routerGetData.post("/add", async (request, response) => {
   const newData = request.body;
-  let existingUser = await user.find({ email: newData.email });
+  let existingUser = await user.find({ email: newData.email.toLowerCase() });
   if (existingUser == "") {
     if (!newData.name) {
       response.send("Please enter your Name:");
@@ -24,12 +24,12 @@ routerGetData.post("/add", async (request, response) => {
     } else {
       const addData = new user({
         name: newData.name,
-        email: newData.email,
+        email: (newData.email).toLowerCase(),
         pwd: newData.pwd,
         mobile: newData.mobile,
       });
       addData.save();
-      response.send(`Registration Successful/n Hello ${newData.name}, Welcome to BookWalk!!!`);
+      response.send(`Registration Successful\n Hello ${newData.name}, Welcome to BookWalk!!!`);
     }
   } else {
     response.send("The account already exist.");
@@ -39,11 +39,11 @@ routerGetData.post("/add", async (request, response) => {
 //Deleting a record
 routerGetData.delete("/delete", async (request, response) => {
   const newData = request.body;
-  let existingUser = await user.find({ email: newData.email });
+  let existingUser = await user.find({ email: newData.email.toLowerCase() });
   if (existingUser == "") {
     response.send("Account doesn't exist");
   } else {
-    user.collection.deleteOne({ email: newData.email });
+    user.collection.deleteOne({ email: newData.email.toLowerCase() });
     response.send("The record has been deleted!!!");
   }
 });
@@ -51,13 +51,13 @@ routerGetData.delete("/delete", async (request, response) => {
 //updating a record:
 routerGetData.patch("/update", async (request, response) => {
   const newData = request.body;
-  let existingUser = await user.find({ email: newData.email });
+  let existingUser = await user.find({ email: newData.email.toLowerCase() });
   if (existingUser == "") {
     response.send("Account doesn't exist");
   } else {
     user.collection.updateOne(
       {
-        email: newData.email,
+        email: newData.email.toLowerCase(),
       },
       { $set: { name: newData.name } }
     );

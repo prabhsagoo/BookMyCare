@@ -26,7 +26,7 @@ routerAppointment.post("/add", async (req, res) => {
 
 // Book a Appointment
 routerAppointment.post("/book", async (req, res) => {
-  const userData = await user.find({ email: req.body.email });
+  const userData = await user.find({ email: req.body.email.toLowerCase() });
 
   const data = await appointment.findOneAndUpdate(
     {
@@ -40,14 +40,14 @@ routerAppointment.post("/book", async (req, res) => {
     }
   );
   if (userData != "") {
-    if (data.isAvailable == false || data == null) {
+    if (data == null||data.isAvailable == false) {
       res.send(
         `Hi ${userData[0].name}, There is no appointment available for ${req.body.date} at ${req.body.time}!`
       );
     } else {
       const bookAppointment = new book({
         name: userData[0].name,
-        email: req.body.email,
+        email: req.body.email.toLowerCase(),
         mobile: userData[0].mobile,
         date: req.body.date,
         time: req.body.time,
