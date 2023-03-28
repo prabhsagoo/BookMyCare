@@ -39,21 +39,25 @@ routerAppointment.post("/book", async (req, res) => {
       },
     }
   );
-  if (data.isAvailable == false || data == null) {
-    res.send(
-      `Hi ${userData[0].name}, There is no appointment available for ${req.body.date} at ${req.body.time}!`
-    );
+  if (userData != "") {
+    if (data.isAvailable == false || data == null) {
+      res.send(
+        `Hi ${userData[0].name}, There is no appointment available for ${req.body.date} at ${req.body.time}!`
+      );
+    } else {
+      const bookAppointment = new book({
+        name: userData[0].name,
+        email: req.body.email,
+        mobile: userData[0].mobile,
+        date: req.body.date,
+        time: req.body.time,
+      });
+      await bookAppointment.save();
+      res.send(
+        `Hi ${userData[0].name}, Your appointment for ${req.body.date} at ${req.body.time} has been booked!`
+      );
+    }
   } else {
-    const bookAppointment = new book({
-      name: userData[0].name,
-      email: req.body.email,
-      mobile: userData[0].mobile,
-      date: req.body.date,
-      time: req.body.time,
-    });
-    await bookAppointment.save();
-    res.send(
-      `Hi ${userData[0].name}, Your appointment for ${req.body.date} at ${req.body.time} has been booked!`
-    );
+    res.send("You must create an account first!");
   }
 });
