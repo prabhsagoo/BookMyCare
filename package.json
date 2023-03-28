@@ -1,0 +1,18 @@
+{
+  "name": "appointments",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Make a appointment",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Prabh",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "moment": "^2.29.4",
+    "mongoose": "^7.0.2"
+  }
+}
