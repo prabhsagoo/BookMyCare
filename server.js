@@ -12,7 +12,7 @@ app.use("/appointment", routerAppointment);
 
 app.get("/", (request, response) => {
   response.send(
-    "Welcome to BookWalk\n\n Get the Care You Need on Your Schedule: Book Appointments for Walk-in Clinics with Ease."
+    "Welcome to BookMyCare\n\n Get the Care You Need on Your Schedule: Book Appointments for Walk-in Clinics with Ease."
   );
 });
 
