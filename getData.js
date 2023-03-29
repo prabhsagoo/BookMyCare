@@ -29,7 +29,7 @@ routerGetData.post("/add", async (request, response) => {
         mobile: newData.mobile,
       });
       addData.save();
-      response.send(`Registration Successful\n Hello ${newData.name}, Welcome to BookWalk!!!`);
+      response.send(`Registration Successful\n Hello ${newData.name}, Welcome to BookMyCare!!!`);
     }
   } else {
     response.send("The account already exist.");
