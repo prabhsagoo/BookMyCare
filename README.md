@@ -1,5 +1,5 @@
-# start the server with one of the following commands:
+# Start the server with one of the following commands:
 
-npm start
-nodemon server.js
-node server.js
+- npm start
+- nodemon server.js
+- node server.js
